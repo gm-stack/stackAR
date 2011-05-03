@@ -27,7 +27,7 @@ unsigned char val[3];
 int accX, accY, accZ;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Wire.begin();
   
   Wire.beginTransmission(HMC5883_WriteAddress);
@@ -61,7 +61,7 @@ void loop() {
     Wire.send(HMC5883_ModeRegisterAddress);       //Place the Mode Register Address in send-buffer.
     Wire.send(HMC5883_ContinuousModeCommand);     //Place the command for Continuous operation Mode in send-buffer.
     Wire.endTransmission();                       //Send the send-buffer to HMC5883 and end the I2C transmission.
-    delay(10);
+
     
     Wire.beginTransmission(HMC5883_WriteAddress);  //Initiate a transmission with HMC5883 (Write address).
     Wire.requestFrom(HMC5883_WriteAddress,6);      //Request 6 bytes of data from the address specified.
