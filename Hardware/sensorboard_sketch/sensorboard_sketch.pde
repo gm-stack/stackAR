@@ -53,7 +53,7 @@ void setup() {
  
   Wire.beginTransmission( MMA7660addr);
   Wire.send(MMA7660_SR);   
-  Wire.send(0x07);  //   Samples/Second Active and Auto-Sleep Mode
+  Wire.send(0x01);  //   Samples/Second Active and Auto-Sleep Mode
   Wire.endTransmission();
  
   Wire.beginTransmission( MMA7660addr);
