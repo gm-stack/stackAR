@@ -26,6 +26,15 @@ int magX, magY, magZ, i;
 unsigned char val[3];
 int accX, accY, accZ;
 
+struct dataSt {
+  int magX;
+  int magY;
+  int magZ;
+  int accX;
+  int accY;
+  int accZ;
+} dataStr;
+
 void setup() {
   Serial.begin(115200);
   Wire.begin();
@@ -52,11 +61,14 @@ void setup() {
   Wire.send(0x01);//active mode
   Wire.endTransmission();
   
+  while (Serial.read() == -1) {
+  }
 }
 
-void loop() {
-    
+dataSt ret;
+unsigned char ret2[12];
 
+void loop() {
     Wire.beginTransmission(HMC5883_WriteAddress); //Initiate a transmission with HMC5883 (Write address).
     Wire.send(HMC5883_ModeRegisterAddress);       //Place the Mode Register Address in send-buffer.
     Wire.send(HMC5883_ContinuousModeCommand);     //Place the command for Continuous operation Mode in send-buffer.
@@ -74,14 +86,9 @@ void loop() {
         }
     }
     
-    magX=outputData[0] << 8 | outputData[1]; //Combine MSB and LSB of X Data output register
-    magY=outputData[2] << 8 | outputData[3]; //Combine MSB and LSB of Z Data output register
-    magZ=outputData[4] << 8 | outputData[5]; //Combine MSB and LSB of Y Data output register
-    
-    Serial.print("MX="); Serial.print(magX,DEC);
-    Serial.print(" MY="); Serial.print(magY,DEC);
-    Serial.print(" MZ="); Serial.print(magZ,DEC);
-
+    ret.magX=outputData[0] << 8 | outputData[1]; //Combine MSB and LSB of X Data output register
+    ret.magY=outputData[2] << 8 | outputData[3]; //Combine MSB and LSB of Z Data output register
+    ret.magZ=outputData[4] << 8 | outputData[5]; //Combine MSB and LSB of Y Data output register
     
     i = 0;
     val[0] = val[1] = val[2] = 64;
@@ -96,14 +103,13 @@ void loop() {
       }
     }
     
-   accX = ((val[0]<<2))/4;
-   accY = ((val[1]<<2))/4;
-   accZ = ((val[2]<<2))/4;
+   ret.accX = ((val[0]<<2))/4;
+   ret.accY = ((val[1]<<2))/4;
+   ret.accZ = ((val[2]<<2))/4;
    
-    Serial.print(" AX="); Serial.print(accX,DEC);
-    Serial.print(" AY="); Serial.print(accY,DEC);
-    Serial.print(" AZ="); Serial.print(accZ,DEC);
+    memcpy(ret2,&ret,12);
     
-    
-    Serial.println("");
+    Serial.write(0xFF);
+    Serial.write(ret2,12);
+    Serial.write(0xFE);
 }
