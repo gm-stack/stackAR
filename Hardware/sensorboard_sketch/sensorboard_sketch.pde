@@ -67,8 +67,10 @@ void setup() {
 
 dataSt ret;
 unsigned char ret2[12];
+long time;
 
 void loop() {
+    time = millis();
     Wire.beginTransmission(HMC5883_WriteAddress); //Initiate a transmission with HMC5883 (Write address).
     Wire.send(HMC5883_ModeRegisterAddress);       //Place the Mode Register Address in send-buffer.
     Wire.send(HMC5883_ContinuousModeCommand);     //Place the command for Continuous operation Mode in send-buffer.
@@ -112,4 +114,5 @@ void loop() {
     Serial.write(0xFF);
     Serial.write(ret2,12);
     Serial.write(0xFE);
+    while (millis() % 50 > 0) {}
 }
