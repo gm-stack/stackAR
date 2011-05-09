@@ -69,7 +69,7 @@ dataSt ret;
 unsigned char ret2[12];
 long nextTime;
 
-#define frametime 50
+#define frametime 20
 
 void loop() {
     nextTime = millis() + frametime;

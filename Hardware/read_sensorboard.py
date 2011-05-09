@@ -1,11 +1,26 @@
-    #!/usr/bin/env python
+#!/usr/bin/env python
 import serial
 import struct
 import sys
 import math
+import ConfigParser
+import logging
+import socket
+import thread
 
-ser = serial.Serial("/dev/tty.usbserial-A8004wLd",115200)
+config = ConfigParser.ConfigParser()
+config.read("read_sensorboard.conf")
+
+ser = serial.Serial(config.get('device','devnode'),config.getint('device','baudrate'))
 ser.write("a")
+
+verbose = (config.getint('app','verbose') == 1)
+debug = (config.getint('app','debug') == 1)
+
+def vprint(msg):
+    if (verbose):
+        print msg
+
 
 def waitFor(ser,wantbyte):
     while True:
@@ -13,14 +28,24 @@ def waitFor(ser,wantbyte):
         if (byte == wantbyte):
             return
         else:
-            print "got %.2X" % byte
+            vprint("got %.2X" % byte)
 
-def hexdump(data):
-    desc = "%i:" % len(data)
-    for byte in data:
-        desc += " " + ("%.2X" % ord(byte))
-    print desc
+serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+serversocket.bind((config.get('net','bind'), config.getint('net','port')))
+serversocket.listen(50)
 
+connections = []
+
+def connthread(serversocket):
+    global connections
+    while 1:
+        conn, addr = serversocket.accept()
+        if (verbose):
+            print "connection from %s" % addr[0]
+        connections.append(conn)
+
+thread.start_new_thread(connthread,(serversocket,))
 
 while True:
     waitFor(ser,0xFF)
@@ -33,7 +58,10 @@ while True:
     angle = math.atan2(magZ,magX) * (180/3.14159) + 90;
     if (angle < 0):
         angle = 360 + angle
-    sys.stdout.write("\b"*36)
-    sys.stdout.write("%4i %4i %4i  %4i %4i %4i  %4i" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
-    sys.stdout.flush()
+    for conn in connections:
+        conn.send("%4i %4i %4i %4i %4i %4i %4i\n" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
+    if (debug):
+        sys.stdout.write("\b"*36)
+        sys.stdout.write("%4i %4i %4i  %4i %4i %4i  %4i" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
+        sys.stdout.flush()
     
