@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+    #!/usr/bin/env python
 import serial
 import struct
 import sys
@@ -30,9 +30,9 @@ while True:
     magX = values[0]
     magY = values[1]
     magZ = values[2]
-    angle = math.atan2(magZ,magX) * (180/3.14159) + 180;
-    if ((0 < angle) and (angle < 180)):
-        angle = 180 - angle
+    angle = math.atan2(magZ,magX) * (180/3.14159) + 90;
+    if (angle < 0):
+        angle = 360 + angle
     sys.stdout.write("\b"*36)
     sys.stdout.write("%4i %4i %4i  %4i %4i %4i  %4i" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
     sys.stdout.flush()
