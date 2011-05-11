@@ -59,7 +59,10 @@ while True:
     if (angle < 0):
         angle = 360 + angle
     for conn in connections:
-        conn.send("%4i %4i %4i %4i %4i %4i %4i\n" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
+        try:
+            conn.send("%i %i %i %i %i %i %i\n" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))
+        except:
+            connections.remove(conn)
     if (debug):
         sys.stdout.write("\b"*36)
         sys.stdout.write("%4i %4i %4i  %4i %4i %4i  %4i" % (values[0], values[1], values[2], values[3], values[4], values[5],angle))

@@ -40,9 +40,11 @@ def gpsthread():
         lon = 138.601
         alt = 100
         speed = 0
-        status = 2
+        status = 3
 
-def setup():
+def setup(config):
+    global testmode
+    
     thread.start_new_thread(gpsthread,())
 
 def draw():
@@ -52,3 +54,5 @@ def draw():
         fontman.drawText("2D %f %f" % (lat,lon),0,480,align=3,cache=True)
     elif (status == 2):
         fontman.drawText("3D %f %f %.1f" % (lat,lon,alt),0,480,align=3,cache=True)
+    elif (status == 3):
+        fontman.drawText("GPS Testmode: No GPS",0,480,align=3,cache=True)

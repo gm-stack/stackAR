@@ -76,6 +76,15 @@ def glRect(x,y,w,h,align=0):
         glTexCoord2f(1,0); glVertex2f(x+w,y-h)
         glEnd()
         return (x-w,y+h)
+    elif (align == 4): #top middle
+        leftw = int(w/2)
+        rightw = w - leftw # integer division does not guarantee (w/2)*2 == w
+        glTexCoord2f(0,0); glVertex2f(x-leftw,  y)
+        glTexCoord2f(0,1); glVertex2f(x-leftw,  y+h)
+        glTexCoord2f(1,1); glVertex2f(x+rightw, y+h)
+        glTexCoord2f(1,0); glVertex2f(x+rightw, y)
+        glEnd()
+        return (x-w,y+h)
 
 def drawText(text,x,y,cache=True,align=0):
     if (cache):

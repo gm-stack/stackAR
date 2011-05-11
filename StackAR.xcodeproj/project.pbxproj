@@ -19,6 +19,8 @@
 		877EFFC6137A5D5300881E38 /* sensorboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sensorboard.png; sourceTree = "<group>"; };
 		877EFFC8137A5D5300881E38 /* sensorboard_sketch.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensorboard_sketch.pde; sourceTree = "<group>"; };
 		877EFFC9137A5D6900881E38 /* StackAR.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = StackAR.conf; sourceTree = "<group>"; };
+		877EFFCE137A666E00881E38 /* sensors.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sensors.py; sourceTree = "<group>"; };
+		877EFFCF137A720A00881E38 /* gldrawing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gldrawing.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -26,6 +28,7 @@
 			isa = PBXGroup;
 			children = (
 				877EFFC9137A5D6900881E38 /* StackAR.conf */,
+				877EFFCF137A720A00881E38 /* gldrawing.py */,
 				877EFFB7137A5CC300881E38 /* StackAR.py */,
 				877EFFB9137A5D3200881E38 /* fontman.py */,
 				877EFFC1137A5D5300881E38 /* Hardware */,
@@ -36,6 +39,7 @@
 		877EFFBA137A5D3C00881E38 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				877EFFCE137A666E00881E38 /* sensors.py */,
 				877EFFBB137A5D3C00881E38 /* __init__.py */,
 				877EFFBD137A5D3C00881E38 /* clock.py */,
 				877EFFBF137A5D3C00881E38 /* gpsloc.py */,

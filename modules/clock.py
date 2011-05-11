@@ -1,7 +1,7 @@
 import fontman
 import datetime
 
-def setup():
+def setup(config):
     pass
 
 def draw():
