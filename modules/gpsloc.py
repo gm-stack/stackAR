@@ -1,6 +1,11 @@
 import fontman
 import thread
-import gps
+testmode = False
+try:
+    import gps
+except:
+    testmode = True
+    print "no GPS found"
 
 lat = 0
 lon = 0
@@ -18,17 +23,24 @@ def gpsthread():
     global speed
     global status
     
-    session = gps.gps(host="127.0.0.1",port=2947)
-    session.stream(gps.WATCH_ENABLE|gps.WATCH_NEWSTYLE)
-    for report in session:
-        status = 0
-        if ("lat" in report) and ("lon" in report):
-            lat = report["lat"]
-            lon = report["lon"]
-            status = 1
-        if "alt" in report:
-            alt = report["alt"]
-            status = 2
+    if not testmode:
+        session = gps.gps(host="127.0.0.1",port=2947)
+        session.stream(gps.WATCH_ENABLE|gps.WATCH_NEWSTYLE)
+        for report in session:
+            status = 0
+            if ("lat" in report) and ("lon" in report):
+                lat = report["lat"]
+                lon = report["lon"]
+                status = 1
+            if "alt" in report:
+                alt = report["alt"]
+                status = 2
+    else:
+        lat = 34.929
+        lon = 138.601
+        alt = 100
+        speed = 0
+        status = 2
 
 def setup():
     thread.start_new_thread(gpsthread,())

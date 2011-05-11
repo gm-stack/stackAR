@@ -1,0 +1,115 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		877EFFB7137A5CC300881E38 /* StackAR.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = StackAR.py; sourceTree = "<group>"; };
+		877EFFB9137A5D3200881E38 /* fontman.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = fontman.py; sourceTree = "<group>"; };
+		877EFFBB137A5D3C00881E38 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		877EFFBD137A5D3C00881E38 /* clock.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clock.py; sourceTree = "<group>"; };
+		877EFFBF137A5D3C00881E38 /* gpsloc.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gpsloc.py; sourceTree = "<group>"; };
+		877EFFC2137A5D5300881E38 /* camalign.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = camalign.qtz; sourceTree = "<group>"; };
+		877EFFC3137A5D5300881E38 /* read_sensorboard.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = read_sensorboard.conf; sourceTree = "<group>"; };
+		877EFFC4137A5D5300881E38 /* read_sensorboard.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = read_sensorboard.py; sourceTree = "<group>"; };
+		877EFFC5137A5D5300881E38 /* sensorboard.graffle */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = sensorboard.graffle; sourceTree = "<group>"; };
+		877EFFC6137A5D5300881E38 /* sensorboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sensorboard.png; sourceTree = "<group>"; };
+		877EFFC8137A5D5300881E38 /* sensorboard_sketch.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = sensorboard_sketch.pde; sourceTree = "<group>"; };
+		877EFFC9137A5D6900881E38 /* StackAR.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = StackAR.conf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		8709C1A5137A5CA400FA569F = {
+			isa = PBXGroup;
+			children = (
+				877EFFC9137A5D6900881E38 /* StackAR.conf */,
+				877EFFB7137A5CC300881E38 /* StackAR.py */,
+				877EFFB9137A5D3200881E38 /* fontman.py */,
+				877EFFC1137A5D5300881E38 /* Hardware */,
+				877EFFBA137A5D3C00881E38 /* modules */,
+			);
+			sourceTree = "<group>";
+		};
+		877EFFBA137A5D3C00881E38 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				877EFFBB137A5D3C00881E38 /* __init__.py */,
+				877EFFBD137A5D3C00881E38 /* clock.py */,
+				877EFFBF137A5D3C00881E38 /* gpsloc.py */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		877EFFC1137A5D5300881E38 /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				877EFFC2137A5D5300881E38 /* camalign.qtz */,
+				877EFFC3137A5D5300881E38 /* read_sensorboard.conf */,
+				877EFFC4137A5D5300881E38 /* read_sensorboard.py */,
+				877EFFC5137A5D5300881E38 /* sensorboard.graffle */,
+				877EFFC6137A5D5300881E38 /* sensorboard.png */,
+				877EFFC7137A5D5300881E38 /* sensorboard_sketch */,
+			);
+			path = Hardware;
+			sourceTree = SOURCE_ROOT;
+		};
+		877EFFC7137A5D5300881E38 /* sensorboard_sketch */ = {
+			isa = PBXGroup;
+			children = (
+				877EFFC8137A5D5300881E38 /* sensorboard_sketch.pde */,
+			);
+			path = sensorboard_sketch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		8709C1A7137A5CA400FA569F /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 8709C1AA137A5CA400FA569F /* Build configuration list for PBXProject "StackAR" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8709C1A5137A5CA400FA569F;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		8709C1AC137A5CA400FA569F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		8709C1AD137A5CA400FA569F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8709C1AA137A5CA400FA569F /* Build configuration list for PBXProject "StackAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8709C1AC137A5CA400FA569F /* Debug */,
+				8709C1AD137A5CA400FA569F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8709C1A7137A5CA400FA569F /* Project object */;
+}
