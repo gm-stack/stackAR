@@ -5,27 +5,27 @@ import struct
 class sensorboard:
     ser = None
     def __init__(self, config):
-        ser = serial.Serial(config.get('device','devnode'),config.getint('device','baudrate'))
-        ser.write("a")
+        self.ser = serial.Serial(config.get('device','devnode'),config.getint('device','baudrate'))
+        self.ser.write("a")
     
-    def waitFor(ser,wantbyte):
+    def waitFor(self,seri,wantbyte):
         while True:
-            byte = ord(ser.read(1))
+            byte = ord(self.ser.read(1))
             if (byte == wantbyte):
                 return
             else:
-                vprint("got %.2X" % byte)
+                print("got %.2X" % byte)
     
     def read(self):
-        waitFor(ser,0xFF)
-        data = self.ser.read(12)
-        values = struct.unpack("<6h",data)
-        waitFor(ser,0xFE)
+        self.waitFor(self.ser,0xFF)
+        data = self.ser.read(18)
+        values = struct.unpack("<9h",data)
+        self.waitFor(self.ser,0xFE)
         magX = values[0]
         magY = values[1]
         magZ = values[2]
         angle = math.atan2(magZ,magX) * (180/3.14159) + 90;
         if (angle < 0):
             angle = 360 + angle
-        values += [angle]
+        values += (angle,)
         return values
