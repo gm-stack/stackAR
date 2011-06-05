@@ -72,8 +72,8 @@ public class MouseHelper
                 
                 String[] ssp = line.split(" ");
                 
-                Xint -= (Integer.parseInt(ssp[3]) / 2);
-                Yint -= (Integer.parseInt(ssp[5]) / 2);
+                Xint -= (Integer.parseInt(ssp[8]-1) * 2);
+                Yint -= (Integer.parseInt(ssp[6]) * 2);
             }
         } catch (IOException e) {
         }
