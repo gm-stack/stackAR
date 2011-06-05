@@ -10,5 +10,5 @@ class ams:
         x = int(data[0:4])
         y = int(data[4:9])
         z = int(data[9:])
-        values = [0,0,0,x,y,z,0]
+        values = [0,0,0,x,y,z,0,0,0,0]
         return values
